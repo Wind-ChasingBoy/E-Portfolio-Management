@@ -337,7 +337,7 @@ def hash_sha256(data):
 
 def Generate_certificate(data, QR):
     font = ImageFont.truetype('NotoMono-Regular.ttf', 40)
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'KU.png')
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'HNU.png')
     img = Image.open(filepath)
     draw = ImageDraw.Draw(img)
     a = data[0]
@@ -616,10 +616,10 @@ web3 = Web3(Web3.HTTPProvider(quorum_url))
 web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 # # set pre-funded account as sender
 web3.eth.defaultAccount = Web3.toChecksumAddress(
-    '0x5261f159b2f42595956f2Fb830e2d63a896c6b98')
+    '0x2a1bE26dEb4BB14BD95b3E2BBacfb71cf71A3D9B')
 print(web3.isConnected())
 private_key = hex2int(
-    "0x4692e7c5be67e558cdc6963e55ac19f295e7865d7459ab939f2f7250c31a9ba9")
+    "0xe584ebb845af193cf342cd9b161d00f6a8bed3891da3f83afb8367a330914e68")
 public_key = bytes.fromhex(compress_public_key(ECPM(private_key)))
 
 
@@ -650,14 +650,14 @@ def deployCertificateManager():
 # # Create the contract instance with the newly-deployed address
 contract1 = web3.eth.contract(
     address=Web3.toChecksumAddress(
-        '0x6B69c6cad9AB450731B4441e59A0765dB6AcDf8D'),
+        '0x1b6Cff3371f6330c25F31EAD6c3031043F64E7B6'),
     abi=json.loads('[{"anonymous":false,"name":"newPortfolioCreated","inputs":[{"indexed":false,"name":"_pf_no","type":"string","internalType":"string"},{"indexed":false,"name":"_reg_name","type":"string","internalType":"string"},{"indexed":false,"name":"_professor_name","type":"string","internalType":"string"}],"type":"event","payable":false},{"anonymous":false,"name":"pf_CertificateIssued","inputs":[{"indexed":false,"name":"_cert_no","type":"string","internalType":"string"},{"indexed":false,"name":"_pf_no","type":"string","internalType":"string"},{"indexed":false,"name":"_reg_name","type":"string","internalType":"string"},{"indexed":false,"name":"_professor_name","type":"string","internalType":"string"},{"indexed":false,"name":"_score","type":"uint256","internalType":"uint256"}],"type":"event","payable":false},{"constant":true,"name":"PortfolioList","inputs":[{"name":"","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":true,"name":"countPortfolio","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":true,"name":"getPortfolioStatus","inputs":[{"name":"_pf_no","type":"string","internalType":"string"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":true,"name":"getPortfolioInfo","inputs":[{"name":"_pf_no","type":"string","internalType":"string"}],"outputs":[{"name":"","type":"string","internalType":"string"},{"name":"","type":"string","internalType":"string"},{"name":"","type":"string","internalType":"string"},{"name":"","type":"string","internalType":"string"},{"name":"","type":"string","internalType":"string"},{"name":"","type":"bytes","internalType":"bytes"},{"name":"","type":"uint256","internalType":"uint256"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":true,"name":"getPortfolioURL","inputs":[{"name":"_pf_no","type":"string","internalType":"string"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":false,"name":"newPortfolio","inputs":[{"name":"_pf_no","type":"string","internalType":"string"},{"name":"_pf_name","type":"string","internalType":"string"},{"name":"_reg_dtime","type":"string","internalType":"string"},{"name":"_reg_name","type":"string","internalType":"string"},{"name":"_professor_name","type":"string","internalType":"string"},{"name":"_professor_pk","type":"bytes","internalType":"bytes"},{"name":"_score","type":"uint256","internalType":"uint256"},{"name":"_pf_status","type":"string","internalType":"string"},{"name":"_pf_url","type":"string","internalType":"string"}],"outputs":[],"type":"function","payable":false,"stateMutability":"nonpayable"}]'),
 )
 
 # # Create the contract instance with the newly-deployed address
 contract2 = web3.eth.contract(
     address=Web3.toChecksumAddress(
-        '0x9bA85F5B0d8C5972d632C82cF119084A230a4dc6'),
+        '0xEE6bC2a9cDF081614CCa894FD9A765Ca21470c66'),
     abi=json.loads('[{"anonymous":false,"name":"pf_CertificateIssued","inputs":[{"indexed":false,"name":"_cert_no","type":"string","internalType":"string"},{"indexed":false,"name":"_pf_no","type":"string","internalType":"string"},{"indexed":false,"name":"_professor_pk","type":"bytes","internalType":"bytes"},{"indexed":false,"name":"_cert_signature","type":"bytes","internalType":"bytes"}],"type":"event","payable":false},{"constant":true,"name":"Portfolio_eCertList","inputs":[{"name":"","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"","type":"string","internalType":"string"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":true,"name":"countPortfolioCerts","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":true,"name":"getCertificateInfo","inputs":[{"name":"_cert_no","type":"string","internalType":"string"}],"outputs":[{"name":"","type":"string","internalType":"string"},{"name":"","type":"string","internalType":"string"},{"name":"","type":"bytes","internalType":"bytes"},{"name":"","type":"bytes","internalType":"bytes"},{"name":"","type":"bytes","internalType":"bytes"}],"type":"function","payable":false,"stateMutability":"view"},{"constant":false,"name":"issuePortfolioCertificate","inputs":[{"name":"_cert_no","type":"string","internalType":"string"},{"name":"_pf_no","type":"string","internalType":"string"},{"name":"_organizationID","type":"string","internalType":"string"},{"name":"_pf_hash","type":"bytes","internalType":"bytes"},{"name":"_cert_signature","type":"bytes","internalType":"bytes"},{"name":"_professor_pk","type":"bytes","internalType":"bytes"}],"outputs":[],"type":"function","payable":false,"stateMutability":"nonpayable"}]'),
 )
 
